@@ -31,16 +31,19 @@ public class Simulation {
             Position wantedPos = e.update(this.map);
             this.moveEntity(e, this.map, wantedPos);
         }
-        ArrayList<Prey> preys = map.getPreys();
-        System.out.println("PREYS : "+preys.toArray().length);
-        System.out.println("FRAMES : "+frame);
-
+        //UI -> COUNTING FRAMES & PREYS
+        showUI();
         for (Entity e : this.entitiesToRemove){
             entities.remove(e);
         }
         entitiesToRemove = new ArrayList<>();
     }
 
+    public void showUI(){
+        ArrayList<Prey> preys = map.getPreys();
+        System.out.println("PREYS : "+preys.toArray().length);
+        System.out.println("FRAMES : "+frame);
+    }
 
 
     public void generateMap(int numberPrey,int numberPredator) {
