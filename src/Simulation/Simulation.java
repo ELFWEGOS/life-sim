@@ -99,8 +99,6 @@ public class Simulation {
 
 
     public void moveEntity(Entity entity,Map map,Position position) {
-        int actualX = entity.getX();
-        int actualY = entity.getY();
         if (position != null) {
 
             //VERIFY IF THE WANTED POSITION IS IN BOUNDS
@@ -115,10 +113,7 @@ public class Simulation {
                    // System.out.println("move vers vide");
 
                 } else {//WANTED CELL NOT EMPTY
-                    if (entity instanceof Prey && wantedCell.getEntity() instanceof Predator) { // P -> M
-                      //  System.out.println("can't move");
-
-                    } else if (entity instanceof Predator && wantedCell.getEntity() instanceof Prey) { // M -> P
+                     if (entity instanceof Predator && wantedCell.getEntity() instanceof Prey) { // M -> P
                         map.getCell(entity.getPosition()).setEntity(null);//VIDER LA PREMIERE CELL
                         entitiesToRemove.add(wantedCell.getEntity());//enlever la proie de la matrice MDR
                         wantedCell.setEntity(entity);//DEPLACER LE PREDATOR A SA PLACE
