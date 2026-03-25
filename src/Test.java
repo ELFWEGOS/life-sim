@@ -10,9 +10,9 @@ public class Test {
         simulation.generateMap(4,1);
 
         while (true){
-            simulation.update();
-            simulation.renderMap();
-            Thread.sleep(100);
+//            simulation.update();
+//            simulation.renderMap();
+//            Thread.sleep(100);
         }
 
     }
