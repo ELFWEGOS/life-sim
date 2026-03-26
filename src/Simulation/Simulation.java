@@ -40,6 +40,7 @@ public class Simulation {
 
 
     public void generateMap(int numberPrey,int numberPredator) {
+        //MIAW MARWANE
         int actualNbPrey = 0;
         int actualNbPredator = 0;
         for (int y = 0; y < this.map.getHeight(); y++) {
