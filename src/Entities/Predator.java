@@ -56,13 +56,25 @@ public class Predator extends Entity{
 
         int moveX = 0;
         int moveY = 0;
-        if(Math.abs(dx) < Math.abs(dy)){
-            moveX = Integer.signum(dx) * this.v;
-        }else {
-            moveY = Integer.signum(dy) * this.v;
+
+        //SI ILS SONT DEJA ALLIGNER SUR UN DES AXE
+        if(dx == 0 || dy == 0) {
+            if (this.x == target.getX()) {
+                moveY = Integer.signum(dy) * this.v;
+            } else if (this.y == target.getY()) {
+                moveX = Integer.signum(dx) * this.v;
+            }
+        }else{
+            //SI ILS NE SONT ALLIGNER SUR AUCUN AXE
+            if(Math.abs(dx) < Math.abs(dy)){
+                moveX = Integer.signum(dx) * this.v;
+            }else {
+                moveY = Integer.signum(dy) * this.v;
+            }
         }
         return new Position(this.x + moveX,this.y + moveY);
-    }
+
+        }
 
     private Position moveRandomly(){
         int dir = random.nextInt(4);
