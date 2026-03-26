@@ -18,10 +18,10 @@ public class Simulation {
     private ArrayList<Entity> entitiesToRemove;
     private int frame = 0;
 
-    public Simulation() {
+    public Simulation(Map map) {
         this.entitiesToRemove = new ArrayList<>();
         this.random = new Random();
-        this.map = new Map(5, 3);
+        this.map = map;
         this.entities = new ArrayList<>();
     }
 
@@ -32,17 +32,10 @@ public class Simulation {
             this.moveEntity(e, this.map, wantedPos);
         }
         //UI -> COUNTING FRAMES & PREYS
-        showUI();
         for (Entity e : this.entitiesToRemove){
             entities.remove(e);
         }
         entitiesToRemove = new ArrayList<>();
-    }
-
-    public void showUI(){
-        ArrayList<Prey> preys = map.getPreys();
-        System.out.println("PREYS : "+preys.toArray().length);
-        System.out.println("FRAMES : "+frame);
     }
 
 
@@ -76,33 +69,11 @@ public class Simulation {
         }
     }
 
-    public void renderMap() throws IOException, InterruptedException {
-
-        //ANSI ACTIVATION
-        if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-
-        // clear écran
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-
-        for (int y = 0; y < this.map.getHeight(); y++) {
-            for (int x = 0; x < this.map.getWidth(); x++) {
-                System.out.print(this.map.getCell(new Position(x,y)));
-            }
-            System.out.println();
-        }
-
-        System.out.println();
-    }
-
 
     public void moveEntity(Entity entity,Map map,Position position) {
         if (position != null) {
 
             //VERIFY IF THE WANTED POSITION IS IN BOUNDS
-
             if (map.isInBounds(position)) {
                 Cell wantedCell = map.getCell(position);
 
@@ -123,6 +94,10 @@ public class Simulation {
                 }
             }
         }
+    }
+
+    public int getFrame(){
+        return this.frame;
     }
 
 }
